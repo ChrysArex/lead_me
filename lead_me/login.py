@@ -22,4 +22,5 @@ def register():
          )
          session.add(user)
          session.commit()
+         return "Utilisateur creer avec succes"
     return render_template("login.html")

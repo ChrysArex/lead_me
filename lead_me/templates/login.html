@@ -60,39 +60,39 @@
                                             </div>
     
                                             <div class="mt-4">
-                                                <form class="needs-validation" novalidate action="https://themesbrand.com/velzon/html/creative/index.html">
+                                                <form class="needs-validation" novalidate action="{{ url_for('auth.register') }}" method="POST">
     
                                                     <div class="mb-3">
                                                         <label for="nom" class="form-label">Nom <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="nom" placeholder="Ex: 10C-47-126" required>
+                                                        <input type="text" class="form-control" id="nom" placeholder="Ex: 10C-47-126" name="nom" required>
                                                         <div class="invalid-feedback">
                                                             .....
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="prenom" class="form-label">Prenom <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="prenom" placeholder="Ex: 10C-47-126" required>
+                                                        <input type="text" class="form-control" id="prenom" placeholder="Ex: 10C-47-126" name="prenom" required>
                                                         <div class="invalid-feedback">
                                                             .....
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="matricule" class="form-label">Matricule <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="matricule" placeholder="Ex: 10C-47-126" required>
+                                                        <input type="text" class="form-control" id="matricule" placeholder="Ex: 10C-47-126" name="matricule" required>
                                                         <div class="invalid-feedback">
                                                             .....
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="email" placeholder="Ex: 10C-47-126" required>
+                                                        <input type="text" class="form-control" id="email" placeholder="Ex: 10C-47-126" name="email" required>
                                                         <div class="invalid-feedback">
                                                             .....
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="password" placeholder="Ex: 10C-47-126" required>
+                                                        <input type="text" class="form-control" id="password" placeholder="Ex: 10C-47-126" name="password" required>
                                                         <div class="invalid-feedback">
                                                             .....
                                                         </div>
@@ -105,8 +105,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="" class="form-label">Série<span class="text-danger">*</span></label>
-                                                        <select class="form-control" data-choices name="choices-single-default" id="choices-single-default" required>
+                                                        <label for="serie" class="form-label">Série<span class="text-danger">*</span></label>
+                                                        <select class="form-control" data-choices name="serie" id="choices-single-default" required>
                                                             <option value="">Choissisez votre série</option>
                                                             <option value="A">A</option>
                                                             <option value="B">B</option>

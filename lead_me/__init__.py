@@ -19,6 +19,9 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    from . import db
+    db.init_db()
+    app.teardown_appcontext(db.shutdown_session)
     from .login import auth_bp
     from .enregistrement import notes_bp
     app.register_blueprint(auth_bp)

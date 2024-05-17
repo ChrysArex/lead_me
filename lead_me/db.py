@@ -11,12 +11,12 @@ session = scoped_session(sessionmaker(
                         ))
 Base = declarative_base()
 
-def init_db():
+def init_db(Base):
     """initialize the database by mapping the defined models with database
     tables
     """
     from . import models
-    Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(engine)
 
 def shutdown_session(exception=None):
     session.remove()

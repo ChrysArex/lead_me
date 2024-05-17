@@ -20,7 +20,7 @@ def create_app(test_config=None):
         pass
 
     from . import db
-    db.init_db()
+    db.init_db(db.Base)
     app.teardown_appcontext(db.shutdown_session)
     from .login import auth_bp
     from .enregistrement import notes_bp

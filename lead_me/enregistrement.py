@@ -12,4 +12,4 @@ def traiter():
 
 @notes_bp.route("/resultat", methods=("GET", "POST"))
 def resultat():
-    return render_template("result.html")
+    return render_template("dashboard/user/index.html")

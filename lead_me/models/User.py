@@ -4,7 +4,7 @@ from ..db import Base
 from uuid import uuid4
 
 
-class User(UserMixin, Base):
+class User(Base):
     """User model to map the users table
     """
     __tablename__ = 'users'

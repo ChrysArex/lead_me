@@ -26,4 +26,7 @@ def create_app(test_config=None):
     from .enregistrement import notes_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(notes_bp)
+    @app.route("/home", methods=["GET"])
+    def resultat():
+        return render_template("frontend/landing_page.html")
     return app

@@ -14,7 +14,7 @@ class User(Base):
     nom = Column(String(45), nullable=False)
     email = Column(String(100), nullable=True)
     password = Column(String(200), nullable=False)
-    role = Column(String(200), nullable=False)
+    role = Column(String(45), nullable=False)
     serie = Column(String(10), nullable=False)
 
     def __init__(self, prenom, nom, matricule, email, password, serie):

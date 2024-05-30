@@ -22,5 +22,5 @@ def register():
          )
          session.add(user)
          session.commit()
-         return "Utilisateur creer avec succes"
+         return redirect(url_for('notes.traiter'))
     return render_template("login.html")

@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from .models import *
 import requests
 import json
 import os
@@ -8,6 +9,7 @@ def create_app(test_config=None):
     """configure and return our main app"""
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(SECRET_KEY='dev')
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///lead_me.db"
 
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
@@ -19,10 +21,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import db
-    db.init_db(db.Base)
-    app.teardown_appcontext(db.shutdown_session)
-    from .login import auth_bp
+    from .db import db
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
+    from .auth import auth_bp
     from .enregistrement import notes_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(notes_bp)

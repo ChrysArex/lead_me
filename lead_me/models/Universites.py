@@ -1,8 +1,9 @@
-from sqlalchemy import Integer, String, ForeignKey
+from sqlalchemy import Integer, String, ForeignKey, Date
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash
 from ..db import Base
 from uuid import uuid4
+from datetime import datetime
 
 class Universite(Base):
     """Serie model to map the serie table

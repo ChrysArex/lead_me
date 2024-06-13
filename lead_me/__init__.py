@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from .models import *
+from .models import (User, Universites, Serie, Role, Note, Moyenne, Matiere, Filiere, Ecole)
 import requests
 import json
 import os

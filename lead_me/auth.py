@@ -28,5 +28,5 @@ def register():
          )
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('notes.traiter'))
+        return str(db.session.query(User.User).filter_by(email=request.form.get("email")).first()) #redirect(url_for('notes.traiter'))
     return render_template("login.html")

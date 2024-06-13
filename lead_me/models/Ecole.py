@@ -1,9 +1,10 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Date
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash
 from ..db import Base
-from Universites import Universite
+from .Universites import Universite
 from uuid import uuid4
+from datetime import datetime
 
 class Ecole(Base):
     """ecole model to map the serie table
@@ -11,7 +12,7 @@ class Ecole(Base):
     __tablename__ = 'ecole'
     id_ecole = mapped_column(String(128), primary_key=True, nullable=False)
     nom = mapped_column(String(10), nullable=False)
-    id_universite = mapped_column(String(128), ForeignKey(Universite.Universite), nullable=False)
+    id_universite = mapped_column(String(128), ForeignKey(Universite.id_universite), nullable=False)
     created_at = mapped_column(Date, default=datetime.now())
 
     def __init__(self, nom):

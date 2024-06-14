@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash
 from ..db import Base
@@ -11,7 +11,9 @@ class Role(Base):
     __tablename__ = 'role'
     id_role = mapped_column(String(128), primary_key=True, nullable=False)
     nom = mapped_column(String(10), nullable=False)
-    created_at = mapped_column(Date, default=datetime.now())
+    created_at = mapped_column(DateTime, default=datetime.now())
+    updated_at = mapped_column(DateTime, default=datetime.now())
+    deleted_at = mapped_column(DateTime, default=datetime.now())
 
     def __init__(self, nom):
         """Initiate the model object with column values

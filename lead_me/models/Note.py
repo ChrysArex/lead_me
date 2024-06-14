@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Float, Date
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash
 from ..db import Base
@@ -15,7 +15,9 @@ class Note(Base):
     id_matiere = mapped_column(String(128), ForeignKey(Matiere.id_matiere), nullable=False)
     id_user = mapped_column(String(128), ForeignKey(User.id), nullable=False)
     note = mapped_column(Float(), nullable=False)
-    created_at = mapped_column(Date, default=datetime.now())
+    created_at = mapped_column(DateTime, default=datetime.now())
+    updated_at = mapped_column(DateTime, default=datetime.now())
+    deleted_at = mapped_column(DateTime, default=datetime.now())
 
     def __init__(self, id_matiere, id_user, note):
         """Initiate the model object with column values

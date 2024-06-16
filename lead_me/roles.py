@@ -1,3 +1,7 @@
+"""
+Routes and cruds fonction of Role entity
+"""
+
 from flask import (request, jsonify, redirect, url_for, render_template, Blueprint)
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
@@ -5,10 +9,6 @@ from wtforms.validators import DataRequired, ValidationError
 from lead_me.models.Role import Role
 from .db import db
 
-
-"""
-Routes and cruds fonction of Role entity
-"""
 roles_bp = Blueprint("roles", __name__, url_prefix="/roles")
 class CSRFProtectForm(FlaskForm):
     pass
@@ -45,8 +45,8 @@ class DeleteRoleForm(FlaskForm):
 @roles_bp.route("/", methods=["GET"])
 def list_roles():
     roles = Role.query.all()
-    form = CSRFProtectForm()  # Créer une instance du formulaire
-    return render_template("dashboard/roles/index.html", roles=roles, form=form)
+    form = CSRFProtectForm()
+    return render_template("dashboard/roles/index.html", roles=roles, form=form) 
 
 @roles_bp.route("/create", methods=("GET", "POST"))
 def create():

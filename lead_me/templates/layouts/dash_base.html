@@ -228,12 +228,11 @@
                             <div class="collapse menu-dropdown" id="sidebarLanding">
                                 
                                 <ul class="nav nav-sm flex-column">
-                                    
                                     <li class="nav-item">
-                                        <a href="landing.html" class="nav-link" data-key="t-one-page">Liste des séries</a>
+                                        <a href="{{ url_for('series.list_series') }}" class="nav-link" data-key="t-one-page">Liste des séries</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> Créer une série</a>
+                                        <a href="{{ url_for('series.create') }}" class="nav-link" data-key="t-nft-landing"> Créer une série</a>
                                     </li>
                                 </ul>
                             </div>

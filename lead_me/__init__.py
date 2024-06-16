@@ -41,9 +41,11 @@ def create_app(test_config=None):
     from .auth import auth_bp
     from .enregistrement import notes_bp
     from .roles import roles_bp
+    from .serie import series_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(notes_bp)
     app.register_blueprint(roles_bp)
+    app.register_blueprint(series_bp)
     @app.route("/", methods=["GET"])
     def resultat():
         return render_template("frontend/landing_page.html")

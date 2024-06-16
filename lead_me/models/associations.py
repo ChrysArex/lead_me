@@ -9,7 +9,9 @@ from datetime import datetime
 coefficient = db.Table(
   'coefficient',
   db.Column('id_matiere', String, db.ForeignKey('matiere.id_matiere')),
-  db.Column('id_serie', db.Integer, db.ForeignKey('serie.id_serie'))
+  db.Column('id_serie', db.Integer, db.ForeignKey('serie.id_serie')),
+  db.Column('coefficient', db.Integer, nullable=False)
+  
 )
 
 matiere_filiere = db.Table(

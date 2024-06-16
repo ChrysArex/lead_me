@@ -6,7 +6,7 @@ from .Matiere import Matiere
 from datetime import datetime
 from uuid import uuid4
 
-class Serie(Base):
+class Serie(db.Model):
     """Serie model to map the serie table
     """
     __tablename__ = 'serie'
@@ -15,7 +15,7 @@ class Serie(Base):
     matiere = db.relationship('Matiere', secondary = 'coefficient', back_populates = 'serie')
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
-    deleted_at = mapped_column(DateTime, default=datetime.now())
+    deleted_at = mapped_column(DateTime, default=None)
 
     def __init__(self, nom):
         """Initiate the model object with column values

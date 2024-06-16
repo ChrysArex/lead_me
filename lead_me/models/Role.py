@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash
-from ..db import Base
+from ..db import db
 from uuid import uuid4
 from datetime import datetime
 
-class Role(Base):
+class Role(db.Model):
     """Role model to map the role table
     """
     __tablename__ = 'role'
@@ -13,7 +13,7 @@ class Role(Base):
     nom = mapped_column(String(10), nullable=False)
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
-    deleted_at = mapped_column(DateTime, default=datetime.now())
+    deleted_at = mapped_column(DateTime, default=None)
 
     def __init__(self, nom):
         """Initiate the model object with column values

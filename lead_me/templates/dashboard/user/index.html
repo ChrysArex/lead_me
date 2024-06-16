@@ -9,17 +9,21 @@
 {% endblock %}
 
 {% block all_user %}
-<div class="row" style="margin-top: 70px;">
+<div class="row" >
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Basic Datatables</h5>
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title mb-0">Liste des Utilisateurs</h5>
+                <a href="" class="btn btn-primary">
+                    Ajouter un utilisateur
+                </a>            
             </div>
+            
             <div class="card-body">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" >
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 10px;">
+                            <th scope="col" >
                                 <div class="form-check">
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>

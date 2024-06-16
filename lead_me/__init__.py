@@ -3,6 +3,7 @@ from .models import (User, Universites, Serie, Role, Note, Moyenne, Matiere, Fil
 import requests
 import json
 import os
+import babel.dates
 
 
 def create_app(test_config=None):
@@ -23,18 +24,25 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
+    @app.template_filter('format_date')
+    def format_date(value, format='medium'):
+        if format == 'full':
+            format="EEEE, d MMMM y"
+        elif format == 'medium':
+            format="dd MMMM y"
+        return babel.dates.format_datetime(value, format, locale='fr')
+    
     from .db import db
     db.init_app(app)
     with app.app_context():
-        db.drop_all()
+        # db.drop_all()
         db.create_all()
     from .auth import auth_bp
     from .enregistrement import notes_bp
     from .roles import roles_bp
-    app.register_blueprint(roles_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(notes_bp)
+    app.register_blueprint(roles_bp)
     @app.route("/", methods=["GET"])
     def resultat():
         return render_template("frontend/landing_page.html")

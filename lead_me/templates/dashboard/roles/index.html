@@ -67,6 +67,7 @@
     </div>
 </div>
 <script>
+    var csrf_token = "{{ form.csrf_token._value() }}";
     function deleteRoleConfirm(role_id) {
         Swal.fire({
             title: "Êtes-vous sûr de vouloir supprimer ce rôle ?",
@@ -83,10 +84,17 @@
                 form.action = '/roles/delete/' + role_id;
                 form.style.display = 'none';
 
+                // Créer un champ caché pour le token CSRF
+                var csrfField = document.createElement('input');
+                csrfField.type = 'hidden';
+                csrfField.name = 'csrf_token';
+                csrfField.value = csrf_token; // Utiliser le token CSRF stocké
+                form.appendChild(csrfField);
+
                 document.body.appendChild(form);
                 form.submit();
             }
-        })
+        });
     }
 </script>
 {% endblock %}

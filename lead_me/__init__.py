@@ -13,6 +13,7 @@ def create_app(test_config=None):
     app.config.from_mapping(SECRET_KEY='dev')
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, 'lead_me.db')
     app.config['SQLALCHEMY_ECHO'] = True
+    app.config['SECRET_KEY'] = 'JOLIDON@21Jolidon@24'
 
 
     if test_config is None:

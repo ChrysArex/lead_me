@@ -40,18 +40,20 @@
                             
                             <div class="p-2 mt-4">
                                 <form action="{{ url_for('roles.edit', role_id=role.id_role) }}" method="POST">
+                                    {{ form.hidden_tag() }}
                                     <div class="mb-3">
-                                        <label class="form-label" for="role_name">Nom</label>
-                                        <input type="text" class="form-control" id="role_name" placeholder="Ex: Utilisateur" name="role" value="{{role.nom}}" required>
-                                        {% if error %}
-                                            <div class="alert alert-danger">{{ error }}</div>
+                                        {{ form.role_name(class="form-control", placeholder="Ex: Utilisateur", value= role.nom)}}
+                                        {% if form.role_name.errors %}
+                                            {% for error in form.role_name.errors %}
+                                                <div class="alert alert-danger">{{ error }}</div>
+                                            {% endfor %}
                                         {% endif %}
                                     </div>
                                     <div class="d-flex justify-content-between mb-2 mt-4">
-                                        <a href="{{ url_for('roles.list_roles') }}" class="btn " style="background-color: rgba(255, 0, 0, 0.681); color: white;">Annuler</a>
-                                        <button class="btn btn-primary w-50" type="submit">Modifier</button>
+                                        <a href="{{ url_for('roles.list_roles') }}" class="btn" style="background-color: rgba(255, 0, 0, 0.681); color: white;">Annuler</a>
+                                        {{ form.submit(class="btn btn-primary w-50") }}
                                     </div>
-                                </form><!-- end form -->
+                                </form>
 
                             </div>
                         </div>

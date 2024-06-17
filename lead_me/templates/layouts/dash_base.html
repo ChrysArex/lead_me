@@ -246,10 +246,10 @@
                                 <ul class="nav nav-sm flex-column">
                                     
                                     <li class="nav-item">
-                                        <a href="landing.html" class="nav-link" data-key="t-one-page">Liste des matières</a>
+                                        <a href="" class="nav-link" data-key="t-one-page">Liste des matières</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> Créer une matière</a>
+                                        <a href="" class="nav-link" data-key="t-nft-landing"> Créer une matière</a>
                                     </li>
                                 </ul>
                             </div>
@@ -281,10 +281,10 @@
                                 <ul class="nav nav-sm flex-column">
                                     
                                     <li class="nav-item">
-                                        <a href="landing.html" class="nav-link" data-key="t-one-page">Liste des Universités</a>
+                                        <a href="{{ url_for('universites.list_universites') }}" class="nav-link" data-key="t-one-page">Liste des Universités</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> Créer une Université</a>
+                                        <a href="{{ url_for('universites.create') }}" class="nav-link" data-key="t-nft-landing"> Créer une Université</a>
                                     </li>
                                 </ul>
                             </div>

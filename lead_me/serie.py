@@ -8,7 +8,7 @@ from wtforms.validators import DataRequired, ValidationError
 from lead_me.models.Serie import Serie
 from .db import db
 
-series_bp =  Blueprint("series", __name__, url_prefix="/series")
+series_bp = Blueprint("series", __name__, url_prefix="/series")
 
 class CSRFProtectForm(FlaskForm):
     pass

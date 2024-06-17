@@ -6,16 +6,17 @@ from .Matiere import Matiere
 from datetime import datetime
 from uuid import uuid4
 
-class Serie(Base):
+class Serie(db.Model):
     """Serie model to map the serie table
     """
     __tablename__ = 'serie'
     id_serie = mapped_column(String(128), primary_key=True, nullable=False)
     nom = mapped_column(String(10), nullable=False)
     matiere = db.relationship('Matiere', secondary = 'coefficient', back_populates = 'serie')
+    filiere = db.relationship('Filiere', secondary = 'filiere_serie', back_populates = 'serie')
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
-    deleted_at = mapped_column(DateTime, default=datetime.now())
+    deleted_at = mapped_column(DateTime, nullable=True)
 
     def __init__(self, nom):
         """Initiate the model object with column values

@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from .models import (User, Universites, Serie, Role, Note, Moyenne, Matiere, Filiere, Ecole, associations)
+from flask_login import LoginManager
 import requests
 import json
 import os
@@ -26,8 +27,15 @@ def create_app(test_config=None):
 
     from .db import db
     db.init_app(app)
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(matricule):
+        return User.User.query.get(matricule)
     with app.app_context():
-        db.drop_all()
+        #db.drop_all()
         db.create_all()
     from .auth import auth_bp
     from .enregistrement import notes_bp

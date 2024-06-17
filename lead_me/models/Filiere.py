@@ -1,7 +1,7 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, Date
+from sqlalchemy import Column, Integer, String, ForeignKey, Text, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash
-from ..db import Base
+from ..db import Base, db
 from .Ecole import Ecole
 from uuid import uuid4
 from datetime import datetime
@@ -15,12 +15,15 @@ class Filiere(Base):
     debouches = mapped_column(Text(), nullable=False)
     bourses = mapped_column(Integer(), nullable=False)
     semi_bourses = mapped_column(Integer(), nullable=False)
-    formule = mapped_column(String(150), nullable=False)
-    categorie = mapped_column(String(20), nullable=False)
+    #formule = mapped_column(String(150), nullable=False)
+    categorie = mapped_column(String(20), nullable=True)
     id_ecole = mapped_column(String(128), ForeignKey(Ecole.id_ecole), nullable=False)
-    created_at = mapped_column(Date, default=datetime.now())
+    matiere = db.relationship('Matiere', secondary='matiere_filiere', back_populates = 'filiere')
+    created_at = mapped_column(DateTime, default=datetime.now())
+    updated_at = mapped_column(DateTime, default=datetime.now())
+    deleted_at = mapped_column(DateTime, default=datetime.now())
 
-    def __init__(self, nom, debouches, bourses, semi_bourses, formule, categorie):
+    def __init__(self, nom, debouches, bourses, semi_bourses, categorie):
         """Initiate the model object with column values
         """
         self.id_filiere = str(uuid4())
@@ -28,7 +31,7 @@ class Filiere(Base):
         self.debouches = debouches
         self.bourses = bourses
         self.semi_bourses = semi_bourses
-        self.formule = formule
+        #self.formule = formule
         self.categorie = categorie
         self.created_at = datetime.now()
 

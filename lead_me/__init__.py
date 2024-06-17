@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, flash ,render_template
 from .models import (User, Universites, Serie, Role, Note, Moyenne, Matiere, Filiere, Ecole, associations)
 import requests
 import json

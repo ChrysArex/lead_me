@@ -264,10 +264,10 @@
                                 <ul class="nav nav-sm flex-column">
                                     
                                     <li class="nav-item">
-                                        <a href="landing.html" class="nav-link" data-key="t-one-page">Liste des Ecoles</a>
+                                        <a href="{{ url_for('ecoles.list_ecoles') }}" class="nav-link" data-key="t-one-page">Liste des Ecoles</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> Créer une école</a>
+                                        <a href="{{ url_for('ecoles.create') }}" class="nav-link" data-key="t-nft-landing"> Créer une école</a>
                                     </li>
                                 </ul>
                             </div>
@@ -306,7 +306,23 @@
                                 </ul>
                             </div>
                         </li>
-                    
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarPost" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPost">
+                                <i class="ri-pencil-ruler-2-line"></i> <span data-key="t-landing">Post</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarPost">
+                                
+                                <ul class="nav nav-sm flex-column">
+                                    
+                                    <li class="nav-item">
+                                        <a href="landing.html" class="nav-link" data-key="t-one-page">Liste des Post</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing"> Créer un Post</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
                         
 

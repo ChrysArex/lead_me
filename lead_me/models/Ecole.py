@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash
 from ..db import Base, db
 from .Universites import Universite
@@ -17,7 +17,7 @@ class Ecole(db.Model):
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
     deleted_at = mapped_column(DateTime, default=None)
-
+    universite = relationship("Universite", back_populates="ecoles")
     def __init__(self, nom, code):
         """Initiate the model object with column values
         """

@@ -44,12 +44,14 @@ def create_app(test_config=None):
     from .serie import series_bp
     from .universite import universites_bp
     from .ecole import ecoles_bp
+    from .user import users_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(notes_bp)
     app.register_blueprint(roles_bp)
     app.register_blueprint(series_bp)
     app.register_blueprint(universites_bp)
     app.register_blueprint(ecoles_bp)
+    app.register_blueprint(users_bp)
     @app.route("/", methods=["GET"])
     def resultat():
         return render_template("frontend/landing_page.html")

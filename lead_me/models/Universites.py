@@ -16,6 +16,7 @@ class Universite(db.Model):
     updated_at = mapped_column(DateTime, default=datetime.now())
     deleted_at = mapped_column(DateTime, default=None)
     ecoles = relationship("Ecole", back_populates="universite")
+
     def __init__(self, nom, code):
         """Initiate the model object with column values
         """

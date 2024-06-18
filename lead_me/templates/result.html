@@ -19,16 +19,17 @@
                                 <div class="p-lg-5 p-4">
                                     <div>
                                         <h5 class="text-primary">Résultats</h5>
-                                        <p class="text-muted">L'algorithme fournit les trois filière auquelles vous avez le plus de chance d'être accepté.</p>
+                                        <p class="text-muted">L'algorithme fournit les filières auquelles vous avez le plus de chance d'être accepté.</p>
                                     </div>
 
                                     <div class="mt-4">
                                         <div class="row">
+                                            {% for i in range(nbr) %}
                                             <div class="card mb-3">
                                                 <div class="card-header">
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-grow-1">
-                                                            <h6 class="card-title mb-0 fs-4">1e Choix</h6>
+                                                            <h6 class="card-title mb-0 fs-4">{{ i + 1 }}e Choix</h6>
                                                         </div>
                                                         <div class="flex-shrink-0">
                                                             <ul class="list-inline card-toolbar-menu d-flex align-items-center mb-0">
@@ -45,19 +46,19 @@
                                                 </div>
                                                 <div class="card-body p-4 text-start collapse show" id="collapseexample1">
                                                     <p class="fs-2">
-                                                        Analyse Informatique et Programmation
+                                                        {{ filieres[i].nom }}
                                                     </p>
-                                                    <h5 class="card-title mb-2"><span>Bourses :</span> 115</h5>
-                                                    <h5 class="card-title mb-2"><span>Semi-bourses :</span> 15</h5>
+                                                    <h5 class="card-title mb-2"><span>Bourses :</span> {{ filieres[i].bourses }}</h5>
+                                                    <h5 class="card-title mb-2"><span>Semi-bourses :</span> {{ filieres[i].semi_bourses }}</h5>
                                                     <h5 class="card-title mb-2">
-                                                        <span>Débouchés: </span> Developpeur d'applications
+                                                        <span>Débouchés: </span> {{ filieres[i].debouches }}
                                                     </h5>
-                                                    <h5 class="card-title mb-2">Université d'Abomey-Calavi</h5>
-                                                    <h5 class="card-title mb-2">ENEAM</h5>
+                                                    <!-- <h5 class="card-title mb-2">{{ filieres[i].universite}}</h5>
+                                                    <h5 class="card-title mb-2">{{ filieres[i].id_ecole }}</h5> -->
                                                 </div>
-                                                
                                             </div>
-                                            <div class="card mb-3">
+                                            {% endfor %}
+                                            <!-- <div class="card mb-3">
                                                 <div class="card-header">
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-grow-1">
@@ -122,12 +123,10 @@
                                                     <h5 class="card-title mb-2">ENEAM</h5>
                                                 </div>
                                                 
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
-                                </div>       
-
-                                        
+                                </div>                                       
                             </div>
                         </div>
                     </div>

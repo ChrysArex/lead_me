@@ -1,11 +1,11 @@
 from sqlalchemy import Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash
-from ..db import Base
+from ..db import db
 from uuid import uuid4
 from datetime import datetime
 
-class Universite(Base):
+class Universite(db.Model):
     """Serie model to map the serie table
     """
     __tablename__ = 'universite'
@@ -13,7 +13,8 @@ class Universite(Base):
     nom = mapped_column(String(10), nullable=False)
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
-    deleted_at = mapped_column(DateTime, default=datetime.now())
+    deleted_at = mapped_column(DateTime, nullable=True)
+    code = mapped_column(String(128), nullable=True)
 
     def __init__(self, nom):
         """Initiate the model object with column values

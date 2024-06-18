@@ -47,11 +47,10 @@ def create():
     création des user
     """
     form = CreateUserForm()
-    # if form.validate_on_submit():
-    #     user= User(
-    #         prenom=form.user_prenom.data,
-    #         nom=form.user_nom.data,
-    #         matricule="ROOT",
-    #         email= form.user_mail,
-    #         password=
-    #     )
+    if form.validate_on_submit():
+        user= User(
+            prenom=form.user_prenom.data,
+            nom=form.user_nom.data,
+            matricule="ROOT",
+            email= form.user_mail
+        )

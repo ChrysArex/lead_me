@@ -13,6 +13,7 @@ class Serie(db.Model):
     id_serie = mapped_column(String(128), primary_key=True, nullable=False)
     nom = mapped_column(String(10), nullable=False)
     matiere = db.relationship('Matiere', secondary = 'coefficient', back_populates = 'serie')
+    filiere = db.relationship('Filiere', secondary = 'filiere_serie', back_populates = 'serie')
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
     deleted_at = mapped_column(DateTime, default=None)

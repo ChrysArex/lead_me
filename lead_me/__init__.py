@@ -1,5 +1,6 @@
 from flask import Flask, flash ,render_template
 from .models import (User, Universites, Serie, Role, Note, Moyenne, Matiere, Filiere, Ecole, associations)
+from flask_login import LoginManager
 import requests
 import json
 import os
@@ -35,6 +36,13 @@ def create_app(test_config=None):
     
     from .db import db
     db.init_app(app)
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(matricule):
+        return User.User.query.get(matricule)
     with app.app_context():
         # db.drop_all()
         db.create_all()
@@ -44,12 +52,14 @@ def create_app(test_config=None):
     from .serie import series_bp
     from .universite import universites_bp
     from .ecole import ecoles_bp
+    from .user import users_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(notes_bp)
     app.register_blueprint(roles_bp)
     app.register_blueprint(series_bp)
     app.register_blueprint(universites_bp)
     app.register_blueprint(ecoles_bp)
+    app.register_blueprint(users_bp)
     @app.route("/", methods=["GET"])
     def resultat():
         return render_template("frontend/landing_page.html")

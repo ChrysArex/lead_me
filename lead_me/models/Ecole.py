@@ -14,10 +14,12 @@ class Ecole(db.Model):
     nom = mapped_column(String(10), nullable=False)
     code= mapped_column(String(10), nullable=False)
     id_universite = mapped_column(String(128), ForeignKey(Universite.id_universite), nullable=False)
+    code = mapped_column(String(128), nullable=True)
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
     deleted_at = mapped_column(DateTime, default=None)
     universite = relationship("Universite", back_populates="ecoles")
+
     def __init__(self, nom, code):
         """Initiate the model object with column values
         """

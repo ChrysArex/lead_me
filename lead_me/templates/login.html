@@ -54,14 +54,55 @@
     
                                     <div class="col-lg-6">
                                         <div class="p-lg-5 p-4">
-                                            <div>
-                                                <h5 class="text-primary">Enregistrez-vous Maintenant</h5>
-                                                <p class="text-muted">Faites le premier pas vers votre avenir.</p>
-                                            </div>
-    
                                             <div class="mt-4">
+                                                {% with messages = get_flashed_messages() %}
+                                                {% if messages %}
+                                                    <div>
+                                                        {{ messages[0] }}
+                                                    </div>
+                                                {% endif %}
+                                                {% endwith %}
+                                                {% if r_or_l == "login"%}
+                                            </div>
+                                            <div>
+                                                <h5 class="text-primary">Connecter vous</h5>
+                                            </div>
+                                                <form class="needs-validation" novalidate action="{{ url_for('auth.login') }}" method="POST">
+                                                    <div class="mb-3">
+                                                        <label for="matricule" class="form-label">Matricule <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="matricule" placeholder="Ex: 10C-47-126" name="matricule" required>
+                                                        <div class="invalid-feedback">
+                                                            .....
+                                                        </div>
+                                                    </div>
+                                        
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="password-input">Password</label>
+                                                        <div class="position-relative auth-pass-inputgroup">
+                                                            <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password-input" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name = "password" required>
+                                                            <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                        </div>
+                                                        <div id="passwordInput" class="form-text">Must be at least 8 characters.</div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        Pas encore de compt? Enregistrez-vous <a href="{{ url_for('auth.register') }}">ici</a>
+                                                    </div>
+            
+                                                    
+            
+                                                    <div id="password-contain" class="p-3 bg-light mb-2 rounded">
+                                                        <h5 class="fs-13">Password must contain:</h5>
+                                                        <p id="pass-length" class="invalid fs-12 mb-2">Minimum <b>8 characters</b></p>
+                                                        <p id="pass-lower" class="invalid fs-12 mb-2">At <b>lowercase</b> letter (a-z)</p>
+                                                        <p id="pass-upper" class="invalid fs-12 mb-2">At least <b>uppercase</b> letter (A-Z)</p>
+                                                        <p id="pass-number" class="invalid fs-12 mb-0">A least <b>number</b> (0-9)</p>
+                                                    </div>
+                                                    <div class="mt-4">
+                                                        <button class="btn btn-primary w-100" type="submit">Valider</button>
+                                                    </div>
+                                                </form>
+                                                {% elif r_or_l == "register" %}
                                                 <form class="needs-validation" novalidate action="{{ url_for('auth.register') }}" method="POST">
-    
                                                     <div class="mb-3">
                                                         <label for="nom" class="form-label">Nom <span class="text-danger">*</span></label>
                                                         <input type="text" class="form-control" id="nom" placeholder="Ex: Doe" name="nom" required>
@@ -90,25 +131,6 @@
                                                            Format invalide
                                                         </div>
                                                     </div>
-                                    
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="password-input">Password</label>
-                                                        <div class="position-relative auth-pass-inputgroup">
-                                                            <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password-input" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name = "password" required>
-                                                            <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
-                                                        </div>
-                                                        <div id="passwordInput" class="form-text">Must be at least 8 characters.</div>
-                                                    </div>
-            
-                                                    
-            
-                                                    <div id="password-contain" class="p-3 bg-light mb-2 rounded">
-                                                        <h5 class="fs-13">Password must contain:</h5>
-                                                        <p id="pass-length" class="invalid fs-12 mb-2">Minimum <b>8 characters</b></p>
-                                                        <p id="pass-lower" class="invalid fs-12 mb-2">At <b>lowercase</b> letter (a-z)</p>
-                                                        <p id="pass-upper" class="invalid fs-12 mb-2">At least <b>uppercase</b> letter (A-Z)</p>
-                                                        <p id="pass-number" class="invalid fs-12 mb-0">A least <b>number</b> (0-9)</p>
-                                                    </div>
                                                     <div class="mb-3">
                                                         <label for="serie" class="form-label">Série<span class="text-danger">*</span></label>
                                                         <select class="form-control" data-choices name="serie" id="choices-single-default" required>
@@ -118,12 +140,30 @@
                                                             <option value="C">C</option>
                                                         </select>
                                                     </div>
+                                        
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="password-input">Password</label>
+                                                        <div class="position-relative auth-pass-inputgroup">
+                                                            <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password-input" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name = "password" required>
+                                                            <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                        </div>
+                                                        <div id="passwordInput" class="form-text">Must be at least 8 characters.</div>
+                                                    </div>
+            
+                                                    <div id="password-contain" class="p-3 bg-light mb-2 rounded">
+                                                        <h5 class="fs-13">Password must contain:</h5>
+                                                        <p id="pass-length" class="invalid fs-12 mb-2">Minimum <b>8 characters</b></p>
+                                                        <p id="pass-lower" class="invalid fs-12 mb-2">At <b>lowercase</b> letter (a-z)</p>
+                                                        <p id="pass-upper" class="invalid fs-12 mb-2">At least <b>uppercase</b> letter (A-Z)</p>
+                                                        <p id="pass-number" class="invalid fs-12 mb-0">A least <b>number</b> (0-9)</p>
+                                                    </div>
                                                     <div class="mt-4">
                                                         <button class="btn btn-primary w-100" type="submit">Valider</button>
                                                     </div>
     
                                                    
                                                 </form>
+                                                {% endif %}
                                             </div>
     
                                             

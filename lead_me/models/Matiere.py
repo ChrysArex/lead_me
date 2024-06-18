@@ -21,7 +21,7 @@ class Matiere(db.Model):
     def __init__(self, nom, coefficient):
         """Initiate the model object with column values
         """
-        self.id = str(uuid4())
+        self.id_matiere = str(uuid4())
         self.nom = nom
         self.coefficient = coefficient
         self.created_at = datetime.now()

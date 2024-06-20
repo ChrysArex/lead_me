@@ -22,7 +22,7 @@ def traiter():
 def resultat():
     serie = Serie.query.filter_by(nom=current_user.serie).first()
     filieres = serie.filiere
-    avg, total_coeff = 0, 0
+    avg, total_coeff, prev = 0, 0, 0
     moyennes = Moyenne.query.filter_by(id_user=current_user.id).order_by(Moyenne.moyennecalc.desc()).all()
     if len(moyennes) == 0:
         for filiere in filieres:
@@ -32,11 +32,12 @@ def resultat():
                 avg += matiere.coefficient * int(request.form.get(str(matiere.nom)))
             avg = avg / total_coeff
             moyenne = Moyenne(id_filiere=filiere.id_filiere, id_user=current_user.id, moyennecalc=avg)
-            """la moyenne ne doit pas etre recalculer ou enregister pour un utilisateur qui as deja ses resultats"""
+            moyennes.append(moyenne)
             db.session.add(moyenne)
             db.session.commit()
             avg, total_coeff = 0, 0
-    
+        moyennes = Moyenne.query.filter_by(id_user=current_user.id).order_by(Moyenne.moyennecalc.desc()).all()
+
     filieres = []
     noms = []
     for f in moyennes:

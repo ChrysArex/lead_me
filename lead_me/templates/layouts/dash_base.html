@@ -131,14 +131,14 @@
                                     <!-- La logique des initials de L'user doit être ici -->
                                     <!-- userInitials reprensente en fait tout le bloque -->
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-semibold user-name-text">Anna Adame</span>
+                                        <span class="d-none d-xl-inline-block ms-1 fw-semibold user-name-text">Ortniel ADOUMASSE</span>
                                         <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome Anna!</h6>
+                                <h6 class="dropdown-header">Welcome Ortniel ADOUMASSE!</h6>
                                 <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="auth-logout-basic.html"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
@@ -164,15 +164,12 @@
                     </span>
                 </a>
                 <!-- Light Logo-->
-                <a href="#" class="logo logo-light">
-                    <span class="logo-sm">
-                        <img src="{{ url_for('static', filename = 'images/logo-sm.png') }}" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="{{ url_for('static', filename = 'images/logo-light.png') }}" alt="" height="17">
-                    </span>
+                <a class="navbar-brand display-6 fw-bold text-capitalize lh-base fs-24 " href="index.html" style="color: white; padding-top: 15px;">
+                    <!-- <img src="{{ url_for('static', filename ='images/logo-dark.png') }}" class="card-logo card-logo-dark" alt="logo dark" height="17">
+                    <img src="{{ url_for('static', filename ='images/logo-light.png') }}" class="card-logo card-logo-light" alt="logo light" height="17"> -->
+                    Lead<span style="color: #339FCC;">ME</span>
                 </a>
-                <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+                <button type="button" class="btn btn-sm p-0 fs-17 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
                     <i class="ri-record-circle-line"></i>
                 </button>
             </div>
@@ -194,7 +191,7 @@
                             <div class="collapse menu-dropdown" id="sidebarAuth">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"  role="button">Liste des Utilisateurs</a>
+                                        <a href="{{url_for('users.list_users')}}" class="nav-link"  role="button">Liste des Utilisateurs</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link"  role="button">Creer un utilisateur</a>

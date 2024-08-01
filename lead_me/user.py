@@ -41,16 +41,16 @@ def list_users():
     form = CSRFProtectForm()
     return render_template("dashboard/users/index.html", users=users, form=form)
 
-@users_bp.route("/create", methods=["GET", "POST"])
-def create():
-    """
-    création des user
-    """
-    form = CreateUserForm()
-    if form.validate_on_submit():
-        user= User(
-            prenom=form.user_prenom.data,
-            nom=form.user_nom.data,
-            matricule="ROOT",
-            email= form.user_mail
-        )
+# @users_bp.route("/create", methods=["GET", "POST"])
+# def create():
+#     """
+#     création des user
+#     """
+#     form = CreateUserForm()
+#     if form.validate_on_submit():
+#         user= User(
+#             prenom=form.user_prenom.data,
+#             nom=form.user_nom.data,
+#             matricule="ROOT",
+#             email= form.user_mail
+#         )

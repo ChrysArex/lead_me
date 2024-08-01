@@ -18,7 +18,8 @@ def traiter():
     matieres = serie.matiere
     return render_template("enregistrement.html", matieres=matieres)
 
-@notes_bp.route("/resultat", methods=["POST"])
+@notes_bp.route("/resultat", methods=("GET", "POST"))
+@login_required
 def resultat():
     serie = Serie.query.filter_by(nom=current_user.serie).first()
     filieres = serie.filiere
@@ -31,7 +32,7 @@ def resultat():
                 total_coeff += int(matiere.coefficient)
                 avg += matiere.coefficient * int(request.form.get(str(matiere.nom)))
             avg = avg / total_coeff
-            moyenne = Moyenne(id_filiere=filiere.id_filiere, id_user=current_user.id, moyennecalc=avg)
+            moyenne = Moyenne(id_filiere=filiere.id_filiere, id_user=current_user.id, moyennecalc=round(avg, 2))
             moyennes.append(moyenne)
             db.session.add(moyenne)
             db.session.commit()

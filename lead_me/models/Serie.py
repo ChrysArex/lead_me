@@ -16,7 +16,7 @@ class Serie(db.Model):
     filiere = db.relationship('Filiere', secondary = 'filiere_serie', back_populates = 'serie')
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
-    deleted_at = mapped_column(DateTime, nullable=True)
+    deleted_at = mapped_column(DateTime, default=None)
 
     def __init__(self, nom):
         """Initiate the model object with column values

@@ -53,5 +53,5 @@ def login():
         
         login_user(user)
         
-        return redirect(url_for('notes.traiter'))
+        return redirect(url_for('notes.resultat'))
     return render_template("login.html", r_or_l=r_or_l)

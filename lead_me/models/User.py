@@ -24,7 +24,7 @@ class User(UserMixin, db.Model):
     updated_at = mapped_column(DateTime, default=datetime.now())
     deleted_at = mapped_column(DateTime, nullable=True)
 
-    def __init__(self, prenom, nom, matricule, email, password, serie):
+    def __init__(self, prenom, nom, matricule, email, serie, password="ROOT"):
         """Initiate the model object with column values
         """
         self.id = str(uuid4())

@@ -19,7 +19,7 @@
                                 <div class="p-lg-5 p-4">
                                     <div>
                                         <h5 class="text-primary">Résultats</h5>
-                                        <p class="text-muted">L'algorithme fournit les filières auquelles vous avez le plus de chance d'être accepté.</p>
+                                        <p class="text-muted">L'algorithme fournit les filières auquelles vous avez le plus de chance d'être accepté accompagné de votre moyenne pour cette fillière.</p>
                                     </div>
 
                                     <div class="mt-4">
@@ -46,7 +46,7 @@
                                                 </div>
                                                 <div class="card-body p-4 text-start collapse show" id="collapseexample1">
                                                     <p class="fs-2">
-                                                        {{ filieres[i].nom }}
+                                                        {{ filieres[i].nom }}: {{ moyennes[i].moyennecalc }}
                                                     </p>
                                                     <h5 class="card-title mb-2"><span>Bourses :</span> {{ filieres[i].bourses }}</h5>
                                                     <h5 class="card-title mb-2"><span>Semi-bourses :</span> {{ filieres[i].semi_bourses }}</h5>

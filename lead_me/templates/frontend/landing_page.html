@@ -6,7 +6,7 @@
 <div class="layout-wrapper landing">
     <nav class="navbar navbar-expand-lg navbar-landing fixed-top job-navbar is-sticky" id="navbar">
         <div class="container-fluid custom-container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="">
                 <img src="{{ url_for('static', filename ='images/logo-dark.png') }}" class="card-logo card-logo-dark" alt="logo dark" height="17">
                 <img src="{{ url_for('static', filename ='images/logo-light.png') }}" class="card-logo card-logo-light" alt="logo light" height="17">
             </a>
@@ -29,7 +29,7 @@
                 </ul>
 
                 <div class="">
-                    <a href="/auth/register" class="btn" style="background-color: #339FCC;"><i class="ri-user-3-line align-bottom me-1"></i> Login &amp; Register</a>
+                    <a href="{{ url_for('auth.login') }}" class="btn" style="background-color: #339FCC;"><i class="ri-user-3-line align-bottom me-1"></i> Login &amp; Register</a>
                 </div>
             </div>
 
@@ -133,7 +133,7 @@
                 <!-- end col -->
                 <div class="col-sm-auto">
                     <div>
-                        <a href="#!" class="btn bg-gradient btn-danger">Créer votre compte</a>
+                        <a href="{{ url_for('auth.login') }}" class="btn bg-gradient btn-danger">Créer votre compte</a>
                     </div>
                 </div>
                 <!-- end col -->

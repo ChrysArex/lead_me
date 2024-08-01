@@ -16,7 +16,7 @@ class Matiere(db.Model):
     filiere = db.relationship('Filiere', secondary = 'matiere_filiere', back_populates = 'matiere')
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
-    deleted_at = mapped_column(DateTime, nullable=True)
+    deleted_at = mapped_column(DateTime, default=None)
 
     def __init__(self, nom, coefficient):
         """Initiate the model object with column values

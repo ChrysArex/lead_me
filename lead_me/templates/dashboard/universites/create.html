@@ -51,7 +51,7 @@
                                             {% endfor %}
                                         {% endif %}
                                         {{ form.universite_code.label(class="form-label") }}
-                                        {{ form.universite_code(class="form-control", placeholder="Ex: UAC") }}
+                                        {{ form.universite_code(class="form-control mb-2", placeholder="Ex: UAC") }}
                                         {% if form.universite_code.errors %}
                                             {% for error in form.universite_code.errors %}
                                                 <div class="alert alert-danger">{{ error }}</div>

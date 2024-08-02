@@ -39,23 +39,11 @@
                             </div>
                             
                             <div class="p-2 mt-4">
-                                <!-- <form action="{{ url_for('roles.create') }}" method="POST">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="role_name">Nom</label>
-                                        <input type="text" class="form-control" id="role_name" placeholder="Ex: Utilisateur" name="role" required>
-                                        {% if error %}
-                                            <div class="alert alert-danger">{{ error }}</div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2 mt-4">
-                                        <a href="{{ url_for('roles.list_roles') }}" class="btn " style="background-color: rgba(255, 0, 0, 0.681); color: white;">Annuler</a>
-                                        <button class="btn btn-primary w-50" type="submit">Soumettre</button>
-                                    </div>
-                                </form> -->
+                                
                                 <form action="{{ url_for('roles.create') }}" method="POST">
                                     {{ form.hidden_tag() }}
                                     <div class="mb-3">
-                                        {{ form.role_name(class="form-control", placeholder="Ex: Utilisateur") }}
+                                        {{ form.role_name(class="form-control mb-1", placeholder="Ex: Utilisateur") }}
                                         {% if form.role_name.errors %}
                                             {% for error in form.role_name.errors %}
                                                 <div class="alert alert-danger">{{ error }}</div>

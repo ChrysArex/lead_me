@@ -74,4 +74,10 @@ def create_app(test_config=None):
     def resultat():
         latest_posts = Post.query.order_by(Post.created_at.desc()).limit(3).all()
         return render_template("frontend/landing_page.html", posts=latest_posts)
+    
+    @app.route("/all_post", methods=["GET"])
+    def return_post():
+        all_post = Post.query.all()
+        return render_template("frontend/posts.html", posts=all_post)
+    
     return app

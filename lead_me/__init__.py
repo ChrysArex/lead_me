@@ -1,21 +1,28 @@
 from flask import Flask, flash ,render_template
-from .models import (User, Universites, Serie, Role, Note, Moyenne, Matiere, Filiere, Ecole, associations)
+from .models import (User, Universites, Serie, Role, Note, Moyenne, Matiere, Filiere, Ecole,associations)
 from flask_login import LoginManager
 import requests
 import json
 import os
 import babel.dates
+from lead_me.models.Post import Post
 
 
 def create_app(test_config=None):
     """configure and return our main app"""
     basedir = os.path.abspath(os.path.dirname(__file__))
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(SECRET_KEY='dev')
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, 'lead_me.db')
-    app.config['SQLALCHEMY_ECHO'] = True
-    app.config['SECRET_KEY'] = 'JOLIDON@21Jolidon@24'
-
+    # app.config.from_mapping(SECRET_KEY='dev')
+    # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, 'lead_me.db')
+    # app.config['SQLALCHEMY_ECHO'] = True
+    # app.config['SECRET_KEY'] = 'JOLIDON@21Jolidon@24'
+    app.config.from_mapping(
+        SECRET_KEY='dev',
+        SQLALCHEMY_DATABASE_URI="sqlite:///" + os.path.join(basedir, 'lead_me.db'),
+        SQLALCHEMY_ECHO=True,
+        UPLOAD_FOLDER=os.path.join(basedir, 'static/uploads'),
+        ALLOWED_EXTENSIONS={'png', 'jpg', 'jpeg', 'gif'}
+    )
 
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
@@ -53,6 +60,8 @@ def create_app(test_config=None):
     from .universite import universites_bp
     from .ecole import ecoles_bp
     from .user import users_bp
+    from .posts import posts_bp
+    
     app.register_blueprint(auth_bp)
     app.register_blueprint(notes_bp)
     app.register_blueprint(roles_bp)
@@ -60,7 +69,9 @@ def create_app(test_config=None):
     app.register_blueprint(universites_bp)
     app.register_blueprint(ecoles_bp)
     app.register_blueprint(users_bp)
+    app.register_blueprint(posts_bp)
     @app.route("/", methods=["GET"])
     def resultat():
-        return render_template("frontend/landing_page.html")
+        latest_posts = Post.query.order_by(Post.created_at.desc()).limit(3).all()
+        return render_template("frontend/landing_page.html", posts=latest_posts)
     return app

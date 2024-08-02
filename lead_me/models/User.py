@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, String, ForeignKey, DateTime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash
 from flask_login import UserMixin
 from.Serie import Serie
@@ -23,8 +23,10 @@ class User(UserMixin, db.Model):
     created_at = mapped_column(DateTime, default=datetime.now())
     updated_at = mapped_column(DateTime, default=datetime.now())
     deleted_at = mapped_column(DateTime, nullable=True)
+    
+    posts = relationship("Post", back_populates="user")
 
-    def __init__(self, prenom, nom, matricule, email, serie, password="ROOT"):
+    def __init__(self, prenom, nom, matricule, email, serie, password="ROOT", role="user"):
         """Initiate the model object with column values
         """
         self.id = str(uuid4())
@@ -33,7 +35,7 @@ class User(UserMixin, db.Model):
         self.matricule = matricule
         self.email = email
         self.password = generate_password_hash(password)
-        self.role = "user"
+        self.role = role
         self.serie = serie
         self.created_at = datetime.now()
 

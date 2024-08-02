@@ -1,7 +1,7 @@
 """Routes and cruds fonction of Serie entity
 """
 
-from flask import (request, jsonify, redirect, url_for, render_template, Blueprint)
+from flask import (request, jsonify, redirect, url_for, render_template, Blueprint, flash, get_flashed_messages)
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
@@ -20,7 +20,7 @@ class CreateSerieForm(FlaskForm):
     """
     serie_name = StringField('Nom de la serie', validators=[DataRequired(message="Le champ ne doit pas être vide.")])
     def validate_serie_name(self, field):
-        if Serie.query.filter_by(nom=field.data).first():
+        if Serie.query.filter_by(nom=field.data.strip()).first():
             raise ValidationError("Une série de ce nom existe déjà.")
 
     submit = SubmitField('Soumettre')
@@ -33,7 +33,7 @@ class EditSerieForm(FlaskForm):
         self.original_name = original_name
 
     def validate_serie_name(self, field):
-        if field.data != self.original_name and Serie.query.filter_by(nom=field.data).first():
+        if field.data.strip() != self.original_name and Serie.query.filter_by(nom=field.data.strip()).first():
             raise ValidationError("Une série de ce nom existe déjà.")
 
     submit = SubmitField('Modifier')
@@ -54,6 +54,7 @@ def create():
         new_serie = Serie(nom=form.serie_name.data)
         db.session.add(new_serie)
         db.session.commit()
+        flash('Série créé avec succès!', 'success')
         return redirect(url_for('series.list_series'))
     return render_template('dashboard/series/create.html', form=form)
 
@@ -64,6 +65,7 @@ def edit(serie_id):
     if form.validate_on_submit():
         serie.nom = form.serie_name.data
         db.session.commit()
+        flash('Série modifié avec succès!', 'success')
         return redirect(url_for('series.list_series'))
     return render_template("dashboard/series/edit.html", form=form, serie=serie)
 

@@ -80,7 +80,7 @@
                                 <span>1</span>
                             </h1>
                             <h6 class="fs-17 mb-2">Inscrivez-vous</h6>
-                            <p class="text-muted mb-0 fs-15">Créer un compte pour la plateforme.</p>
+                            <p class="text-muted mb-0 fs-15">Inscrivez-vous ou passer directement à l'étape suivante.</p>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                                 <span>2</span>
                             </h1>
                             <h6 class="fs-17 mb-2">Enregistrez vos notes</h6>
-                            <p class="text-muted mb-0 fs-15">Ajouter ensuite les notes obtenus au baccalauréat</p>
+                            <p class="text-muted mb-0 fs-15">Ajouter ensuite vos notes obtenus au baccalauréat</p>
                         </div>
                     </div>
                 </div>
@@ -127,13 +127,14 @@
                 <div class="col-sm">
                     <div>
                         <h4 class="text-white fw-bold mb-2">Prêt à commencer ?</h4>
-                        <p class="text-white-50 mb-0">Créer un compte et enregister vos informations</p>
+                        <p class="text-white-50 mb-0">Créer un compte et enrégister vos informations.</p>
+                        <p class="text-white-50 mb-0">Ou enrégistrer vos notes.</p>
                     </div>
                 </div>
                 <!-- end col -->
                 <div class="col-sm-auto">
                     <div>
-                        <a href="#!" class="btn bg-gradient btn-danger">Créer votre compte</a>
+                        <a href="#!" class="btn bg-gradient btn-danger">Enregistrer vos notes</a>
                     </div>
                 </div>
                 <!-- end col -->
@@ -161,74 +162,35 @@
             <!-- end row -->
 
             <div class="row">
+                {% for post in posts %}
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <img src="{{ url_for('static', filename ='images/graduate.jpg') }}" alt="" class="img-fluid rounded">
+                            <img src="{{ url_for('static', filename='uploads/' ~ post.imagePath) }}" alt="{{ post.titre }}" class="img-fluid rounded">
                         </div>
                         <div class="card-body">
                             <ul class="list-inline fs-14 text-muted">
                                 <li class="list-inline-item">
-                                    <i class="ri-calendar-line align-bottom me-1"></i> 30 Oct, 2023
+                                    <i class="ri-calendar-line align-bottom me-1"></i> {{ post.created_at|format_date('full') }}
                                 </li>
+                                <!-- <li class="list-inline-item">
+                                    <i class="ri-message-2-line align-bottom me-1"></i> 364 Comment
+                                </li> -->
                             </ul>
                             <a href="javascript:void(0);">
-                                <h5>En recherche de bourses pour la France</h5>
+                                <h5>{{post.titre}}</h5>
                             </a>
-                            <p class="text-muted fs-14">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam maxime molestiae facilis, reprehenderit nobis aperiam soluta quam corrupti repudiandae molestias itaque provident exercitationem quod id tenetur voluptatem in culpa dolorum.</p>
+                            <p class="text-muted fs-14">
+                                {{post.contenu}}
+                            </p>
                             
                             <div>
-                                <a href="#!" class="link-success">En Savoir plus<i class="ri-arrow-right-line align-bottom ms-1"></i></a>
+                                <a href="{{post.adresse}}" class="link-success">Learn More <i class="ri-arrow-right-line align-bottom ms-1"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="{{ url_for('static', filename ='images/avatar-8.jpg') }}" alt="" class="img-fluid rounded">
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-inline fs-14 text-muted">
-                                <li class="list-inline-item">
-                                    <i class="ri-calendar-line align-bottom me-1"></i> 02 Oct, 2022
-                                </li>
-                            </ul>
-                            <a href="javascript:void(0);">
-                                <h5>Offre de bourses d'etude en Ingénierie Informatique</h5>
-                            </a>
-                            <p class="text-muted fs-14">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sint ipsum voluptatibus non! Numquam libero beatae aperiam nemo officia, quo saepe mollitia voluptatem quidem earum, molestiae corrupti inventore alias molestias.</p>
-                
-                            <div>
-                                <a href="#!" class="link-success">En savoir plus  <i class="ri-arrow-right-line align-bottom ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="{{ url_for('static', filename ='images/canada.jpg') }}" alt="" class="img-fluid rounded">
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-inline fs-14 text-muted">
-                                <li class="list-inline-item">
-                                    <i class="ri-calendar-line align-bottom me-1"></i> 23 Sept, 2021
-                                </li>
-                                
-                            </ul>
-                            <a href="javascript:void(0);">
-                                <h5>Bourses d'étude pour le Canada</h5>
-                            </a>
-                            <p class="text-muted fs-14">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus nostrum repudiandae, est, vero error fugit nulla quod eius ipsum iste repellendus iusto illo? Libero perferendis ab ex quae accusantium totam!</p>
-                
-                            <div>
-                                <a href="#!" class="link-success">En savoir plus <i class="ri-arrow-right-line align-bottom ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
         </div>
         <!-- end container -->

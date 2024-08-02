@@ -34,32 +34,39 @@
 
                         <div class="card-body p-4">
                             <div class="text-center mt-2">
-                                <h5 class="text-primary">Modifier une Université</h5>
+                                <h5 class="text-primary">Créer un Utilisateur</h5>
                                 
                             </div>
                             
                             <div class="p-2 mt-4">
-                                
-                                <form action="{{ url_for('universites.edit', universite_id=universite.id_universite) }}" method="POST">
+
+                                <form action="{{ url_for('users.create') }}" method="POST">
                                     {{ form.hidden_tag() }}
                                     <div class="mb-3">
-                                        {{ form.universite_name.label(class="form-label") }}
-                                        {{ form.universite_name(class="form-control mb-2", placeholder="Ex: Université D'Abomey Calavi", value=universite.nom) }}
-                                        {% if form.universite_name.errors %}
-                                            {% for error in form.universite_name.errors %}
+                                        {{ form.user_nom.label(class="form-label") }}
+                                        {{ form.user_nom(class="form-control mb-2", placeholder="Ex: ADOUMASSE") }}
+                                        {% if form.user_nom.errors %}
+                                            {% for error in form.user_nom.errors %}
                                                 <div class="alert alert-danger">{{ error }}</div>
                                             {% endfor %}
                                         {% endif %}
-                                        {{ form.universite_code.label(class="form-label") }}
-                                        {{ form.universite_code(class="form-control mb-2", placeholder="Ex: UAC", value=universite.code) }}
-                                        {% if form.universite_code.errors %}
-                                            {% for error in form.universite_code.errors %}
+                                        {{ form.user_prenom.label(class="form-label") }}
+                                        {{ form.user_prenom(class="form-control mb-2" , placeholder="Ex: Dona Ortniel") }}
+                                        {% if form.user_prenom.errors %}
+                                            {% for error in form.user_prenom.errors %}
+                                                <div class="alert alert-danger">{{ error }}</div>
+                                            {% endfor %}
+                                        {% endif %}
+                                        {{ form.user_mail.label(class="form-label") }}
+                                        {{ form.user_mail(class="form-control mb-2", placeholder="Ex: johnDoe@gmail.com") }}
+                                        {% if form.user_mail.errors %}
+                                            {% for error in form.user_mail.errors %}
                                                 <div class="alert alert-danger">{{ error }}</div>
                                             {% endfor %}
                                         {% endif %}
                                     </div>
                                     <div class="d-flex justify-content-between mb-2 mt-4">
-                                        <a href="{{ url_for('universites.list_universites') }}" class="btn" style="background-color: rgba(255, 0, 0, 0.681); color: white;">Annuler</a>
+                                        <a href="{{ url_for('users.list_users') }}" class="btn" style="background-color: rgba(255, 0, 0, 0.681); color: white;">Annuler</a>
                                         {{ form.submit(class="btn btn-primary w-50") }}
                                     </div>
                                 </form>

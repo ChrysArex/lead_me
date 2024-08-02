@@ -34,32 +34,53 @@
 
                         <div class="card-body p-4">
                             <div class="text-center mt-2">
-                                <h5 class="text-primary">Modifier une Université</h5>
+                                <h5 class="text-primary">Modifier un Post</h5>
                                 
                             </div>
                             
                             <div class="p-2 mt-4">
                                 
-                                <form action="{{ url_for('universites.edit', universite_id=universite.id_universite) }}" method="POST">
+                                <form action="{{ url_for('posts.edit', post_id=post.id_post) }}" method="POST" enctype="multipart/form-data">
                                     {{ form.hidden_tag() }}
                                     <div class="mb-3">
-                                        {{ form.universite_name.label(class="form-label") }}
-                                        {{ form.universite_name(class="form-control mb-2", placeholder="Ex: Université D'Abomey Calavi", value=universite.nom) }}
-                                        {% if form.universite_name.errors %}
-                                            {% for error in form.universite_name.errors %}
+                                        {{ form.titre.label(class="form-label") }}
+                                        {{ form.titre(class="form-control mb-1", placeholder="Ex: Bourses en Ingénieurie") }}
+                                        {% if form.titre.errors %}
+                                            {% for error in form.titre.errors %}
                                                 <div class="alert alert-danger">{{ error }}</div>
                                             {% endfor %}
                                         {% endif %}
-                                        {{ form.universite_code.label(class="form-label") }}
-                                        {{ form.universite_code(class="form-control mb-2", placeholder="Ex: UAC", value=universite.code) }}
-                                        {% if form.universite_code.errors %}
-                                            {% for error in form.universite_code.errors %}
+
+
+                                        {{ form.adresse.label(class="form-label") }}
+                                        {{ form.adresse(class="form-control mb-1", placeholder="Ex: eneam@uac.bj") }}
+                                        {% if form.adresse.errors %}
+                                            {% for error in form.adresse.errors %}
                                                 <div class="alert alert-danger">{{ error }}</div>
                                             {% endfor %}
                                         {% endif %}
+
+
+                                        {{ form.contenu.label(class="form-label") }}
+                                        {{ form.contenu(class="form-control mb-1", placeholder="Ex: Entrez les informations de la Bourse") }}
+                                        {% if form.contenu.errors %}
+                                            {% for error in form.contenu.errors %}
+                                                <div class="alert alert-danger">{{ error }}</div>
+                                            {% endfor %}
+                                        {% endif %}
+
+
+                                        {{ form.image.label(class="form-label") }}
+                                        {{ form.image(class="form-control mb-1", placeholder="Ex: Choissisez une image") }}
+                                        {% if form.image.errors %}
+                                            {% for error in form.image.errors %}
+                                                <div class="alert alert-danger">{{ error }}</div>
+                                            {% endfor %}
+                                        {% endif %}
+
                                     </div>
                                     <div class="d-flex justify-content-between mb-2 mt-4">
-                                        <a href="{{ url_for('universites.list_universites') }}" class="btn" style="background-color: rgba(255, 0, 0, 0.681); color: white;">Annuler</a>
+                                        <a href="{{ url_for('posts.list_posts') }}" class="btn" style="background-color: rgba(255, 0, 0, 0.681); color: white;">Annuler</a>
                                         {{ form.submit(class="btn btn-primary w-50") }}
                                     </div>
                                 </form>
